@@ -2,8 +2,18 @@ console.log('I am c.js!');
 
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOM fully loaded. Ready to go!");
+  c1();
 });
 // C.1 - obsluz klikniecie w przycisk Delete - usun element z listy
+const c1 = () => {
+  const as = document.querySelectorAll('a');
+  const asArr = Array.from(as);
+  asArr.forEach((a) => {
+    a.addEventListener('click',(e) => {
+      a.parentElement.parentElement.removeChild;
+    })
+  })
+}
 // C.2 - obsluz przycisk reset - ma wstawic ponownie wszystkie elementy jak bylo na poczatku
 // C.3 - wykonaj zadanie C.1 ale naloz event handler na li
 // C.4 - wykonaj zadanie z C.3 ale naloz handler na body
