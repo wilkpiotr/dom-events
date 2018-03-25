@@ -62,6 +62,7 @@ const c4 = () => {
 const c5 = () => {
   const body = document.querySelector('body');
   body.addEventListener('click', (e) => {
+    event.target.setAttribute("id","remove_me");
     const div = document.querySelector('#modal');
     const div2 = div.firstElementChild;
     div.style.display = "block";
@@ -71,13 +72,16 @@ const c5 = () => {
     no.innerText = 'NO';
     div2.appendChild(yes);
     div2.appendChild(no);
+    e.stopPropagation();
     yes.addEventListener('click', (e) => {
-      body.removeEventListener('click', (e))
+      body.removeEventListener('click', (e));
       div.style.display = "none";
-      event.target.parentElement.removeChild(event.target);
+      document.querySelector('#remove_me').parentElement.removeChild(document.querySelector('#remove_me'));
     })
+    e.stopPropagation();
     no.addEventListener('click', (e) => {
-      event.target.parentElement.parentElement.style.display = "none";
+      body.removeEventListener('click', (e));
+      div.style.display = "none";
     })
   })
 }
