@@ -18,7 +18,8 @@ setInterval(() => {
 // A.2 - Stworz minutnik ktory posiada strukture 00:00 - inkrementuje sekundy, pokazuje ile uplynelo minut i sekund
 
 const minuting = () => {
-  const timer = document.querySelector('#timer')
+  const timer = document.querySelector('#timer');
+  let seconds = 00;
 }
 // A.3 - Stworz funkcje ktora na wejsciu dostaje co ile minutnik ma sie inkrementowac - po wywolaniu
 // ma dodac do strony kolejny minutnik ktory inkrementuje zgodnie z zadanym argumentem
