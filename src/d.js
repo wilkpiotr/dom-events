@@ -8,16 +8,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 // D.1 - Obsluz przycisk dodawania zadania - wartosc wpisana w textarea ma byc dodana do listy
 
 const d1 = () => {
-  const list = document.querySelector('ul');
+  const ul = document.querySelector('ul');
   const button = document.querySelector('button');
   const task = document.querySelector('#new-task');
   button.addEventListener('click', (e) => {
-    if (list.firstElementChild.dataset.id === 'no-tasks') {
+    if (ul.firstElementChild.id === 'no-tasks') {
       ul.removeChild(ul.firstElementChild);
     }
     
-    const toDo = document.createElement('li');
+    const toDo = document.createElement('li');   
     toDo.innerText = task.value;
+    ul.appendChild(toDo);
     task.value = '';
   })
 }
