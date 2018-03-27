@@ -2,9 +2,25 @@ console.log('I am d.js!');
 
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOM fully loaded. Ready to go!");
+  d1();
 });
 
 // D.1 - Obsluz przycisk dodawania zadania - wartosc wpisana w textarea ma byc dodana do listy
+
+const d1 = () => {
+  const list = document.querySelector('ul');
+  const button = document.querySelector('button');
+  const task = document.querySelector('#new-task');
+  button.addEventListener('click', (e) => {
+    if (list.firstElementChild.dataset.id === 'no-tasks') {
+      ul.removeChild(ul.firstElementChild);
+    }
+    
+    const toDo = document.createElement('li');
+    toDo.innerText = task.value;
+    task.value = '';
+  })
+}
 // D.2 - Element li o id = no-task powinien zniknac jak zadanie zostaje dodane
 // D.3 - Textarea new-task powinien miec czyszczona zawartosc po dodaniu zadania
 // D.4 - Dodaj link (znacznik a) do zadania na liscie i usun zadanie z listy po jego kliknieciu

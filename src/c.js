@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
  // c2();
  // c3();
 //  c4();
-    c5();
+   c5();
 });
 
 
@@ -26,12 +26,12 @@ const c1 = () => {
 // C.2 - obsluz przycisk reset - ma wstawic ponownie wszystkie elementy jak bylo na poczatku
 
 const c2 = () => {
-  const body = document.querySelector('body');
+  
   const ul = document.querySelector('ul');
-  const lis = document.querySelectorAll('li');
+  const newUl = ul.innerHTML;
   const button = document.querySelector('button');
   button.addEventListener('click', (e) => {
-    body.appendChild(ul.cloneNode(true));
+    ul.innerHTML = newUl;
   })
 
 }
