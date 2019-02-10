@@ -12,6 +12,10 @@
     .add-content {
       display: flex;
     }
+    a {
+    color: blue;
+    cursor: pointer;
+  }
   </style>
   <script src='/d.js'></script>
 </head>
@@ -24,7 +28,10 @@
       </ul>
     </div>
     <div class='add-content'>
-      <textarea id='new-task' >Enter new task</textarea><button id='add-task'>Add task</button>
+      <textarea id='new-task' placeholder="Enter new task" ></textarea><button id='add-task'>Add task</button>
+    </div>
+    <div>
+      <span id="task-counter"></span>
     </div>
   </div>
 </body>
