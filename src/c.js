@@ -2,57 +2,59 @@ console.log('I am c.js!');
 
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOM fully loaded. Ready to go!");
- // c1();
- // c2();
- // c3();
-//  c4();
-   c5();
+  // c1();
+  c2();
+  // c3();
+  c4c6();
+  // c5();
 });
 
 
 // C.1 - obsluz klikniecie w przycisk Delete - usun element z listy
 const c1 = () => {
-  const ul = document.querySelector('ul');
-  const as = document.querySelectorAll('a');
-  const asArr = Array.from(as);
-  asArr.forEach((a) => {
-    a.addEventListener('click', (e) => {
-      event.target.parentElement.setAttribute("id","remove_me");
-      ul.removeChild(document.querySelector('#remove_me'));
-      
-    })
+  const list = document.querySelector('ul');
+  list.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      list.removeChild(e.target.parentElement);
+    }
   })
 }
 // C.2 - obsluz przycisk reset - ma wstawic ponownie wszystkie elementy jak bylo na poczatku
 
 const c2 = () => {
-  
-  const ul = document.querySelector('ul');
-  const newUl = ul.innerHTML;
+  const list = document.querySelector('ul');
+  const fullList = list.innerHTML;
   const button = document.querySelector('button');
   button.addEventListener('click', (e) => {
-    ul.innerHTML = newUl;
+    list.innerHTML = fullList;
   })
 
 }
 // C.3 - wykonaj zadanie C.1 ale naloz event handler na li
 
 const c3 = () => {
-  const ul = document.querySelector('ul');
-  const lis = document.querySelectorAll('li');
-  const lisArr = Array.from(lis);
-  lisArr.forEach((li) => {
-    li.addEventListener('click', (e) => {
-      ul.removeChild(event.target);
+  const list = document.querySelector('ul');
+  const sports = Array.from(document.querySelectorAll('li'));
+  sports.forEach((sport) => {
+    sport.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+      list.removeChild(event.currentTarget);
+      }
     })
   })
 }
 // C.4 - wykonaj zadanie z C.3 ale naloz handler na body
 
-const c4 = () => {
+const c4c6 = () => {
   const body = document.querySelector('body');
+  const list = document.querySelector('ul');
   body.addEventListener('click', (e) => {
-    event.target.parentElement.removeChild(event.target);
+    if (e.target.tagName === 'A') {
+      e.target.parentElement.classList.add('fade-out');
+      setTimeout(() => {
+        list.removeChild(e.target.parentElement);
+      }, 1000)
+    }
   })
 }
 // C.5 - przed usunieciem pokaz okienko dialogowe z id modal, zeby je pokazac ustaw je jako widoczne
@@ -60,29 +62,29 @@ const c4 = () => {
 // dodaj w okienku 2 przyciski jeden z Yes - po ktorym element jest usuniety a okienko schowane
 // i No - po ktorym tylko okienko sie chowa
 const c5 = () => {
-  const body = document.querySelector('body');
-  body.addEventListener('click', (e) => {
-    event.target.setAttribute("id","remove_me");
-    const div = document.querySelector('#modal');
-    const div2 = div.firstElementChild;
-    div.style.display = "block";
-    const yes = document.createElement('button');
-    yes.innerText = 'YES';
-    const no = document.createElement('button');
-    no.innerText = 'NO';
-    div2.appendChild(yes);
-    div2.appendChild(no);
-    e.stopPropagation();
-    yes.addEventListener('click', (e) => {
-      body.removeEventListener('click', (e));
-      div.style.display = "none";
-      document.querySelector('#remove_me').parentElement.removeChild(document.querySelector('#remove_me'));
-    })
-    e.stopPropagation();
-    no.addEventListener('click', (e) => {
-      body.removeEventListener('click', (e));
-      div.style.display = "none";
-    })
+  const list = document.querySelector('ul');
+  const yes = document.createElement('button');
+  yes.innerText = 'YES';
+  const no = document.createElement('button');
+  no.innerText = 'NO';
+  const modal = document.querySelector('#modal');
+  const modalContent = document.querySelector('.modal-content');
+  modalContent.appendChild(yes);
+  modalContent.appendChild(no)
+
+  list.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      modal.style.display = "block";
+      const deleteMe = e.target.parentElement;
+
+      modal.addEventListener('click', (e) => {
+        if (e.target.innerText === "YES") {
+          list.removeChild(deleteMe);
+          modal.style.display = "none";
+        } else if (e.target.innerText === "NO") 
+          modal.style.display = "none"
+      })
+    }
   })
 }
 
