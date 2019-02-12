@@ -27,11 +27,32 @@ const d = () => {
   const addTask = () => {
     if (textarea.value !== '') {
     const task = document.createElement('li');
-    task.innerHTML = `${textarea.value} <a id="delete-me">delete</a> <a id="move-up">&#8657</a> <a id="move-down">&#8659;</a><input type="checkbox">`;
+    task.innerHTML = `<span>${textarea.value}</span> <a id="delete-me">delete</a> <a id="move-up">&#8657</a> <a id="move-down">&#8659;</a><input type="checkbox"> <a id="edit-me">edit</a>`;
     ul.appendChild(task);
     textarea.value = '';
     }
   }
+
+  const editTask = () => {
+    ul.addEventListener('click', (e) => {
+      if (e.target.id === 'edit-me') {
+        const task = e.target.parentElement;
+        let taskContent = task.firstElementChild.innerText;
+        const taskBody = task.innerHTML;
+        const editTaskContent = `<textarea id="edited-task">${taskContent}</textarea><button id="save">save</button><button id="cancel">cancel</button>`;
+        task.innerHTML = editTaskContent;
+        task.addEventListener('click', (e) => {
+          if (e.target.id === 'cancel') {
+            task.innerHTML = taskBody;
+          } else if (e.target.id === 'save') {
+            const editedTask = document.querySelector('#edited-task').value;
+            task.innerHTML = taskBody;
+            task.firstElementChild.innerText = editedTask; 
+          }
+        })
+      } 
+    })
+  };
 
   const deleteTask = () => {
     ul.addEventListener('click', (e) => {
@@ -79,6 +100,7 @@ const d = () => {
   deleteTask();
   checkTask();
   moveTask();
+  editTask();
 }
 
 // D.2 - Element li o id = no-task powinien zniknac jak zadanie zostaje dodane

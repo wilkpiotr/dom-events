@@ -18,10 +18,6 @@ setInterval(() => {
 }
 
 // A.2 - Stworz minutnik ktory posiada strukture 00:00 - inkrementuje sekundy, pokazuje ile uplynelo minut i sekund
-const timer = document.querySelector('#timer');
-// const buttonStart = document.querySelector('#startMe')
-// const buttonStop = document.querySelector('#stopMe')
-const isTimerOn = false;
 
 
 const a2 = (value, stopMinutes, stopFN) => {
@@ -43,7 +39,6 @@ const a2 = (value, stopMinutes, stopFN) => {
       minutes.innerText++;
       minutes.innerText = minutes.innerText < 10 ? '0' + minutes.innerText : minutes.innerText ;
     } 
-    // timer.innerText = minutes + ':' + seconds;
   },1000)
     setTimeout(() => clearInterval(interval), stopFN * 1000);
 
